@@ -550,6 +550,73 @@ function ContactPage() {
   );
 }
 
+{/* Automation Workflow Section */}
+      <section className="max-w-7xl mx-auto px-6 py-24 border-t border-slate-100">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl font-bold text-charcoal mb-4">Our Seamless Process</h2>
+          <p className="text-slate-600 max-w-2xl mx-auto">
+            From the moment you reach out, our automated ecosystem ensures your request is handled with the highest level of precision and security.
+          </p>
+        </div>
+
+        <div className="relative">
+          {/* Connecting Line (Desktop) */}
+          <div className="hidden lg:block absolute top-1/2 left-0 w-full h-0.5 bg-slate-100 -translate-y-1/2 z-0" />
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
+            <WorkflowStep 
+              icon={<Send className="w-6 h-6 text-primary" />}
+              title="Form Submission"
+              description="Your journey begins with a simple request."
+              step="01"
+            />
+            <WorkflowStep 
+              icon={<Database className="w-6 h-6 text-primary" />}
+              title="Supabase"
+              description="Secure, encrypted storage of your preferences."
+              step="02"
+            />
+            <WorkflowStep 
+              icon={<RefreshCw className="w-6 h-6 text-primary" />}
+              title="HubSpot CRM"
+              description="Seamless integration for personalized concierge service."
+              step="03"
+            />
+            <WorkflowStep 
+              icon={<Mail className="w-6 h-6 text-primary" />}
+              title="Mailchimp"
+              description="Instant confirmation and itinerary details."
+              step="04"
+            />
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function WorkflowStep({ icon, title, description, step }: { icon: ReactNode, title: string, description: string, step: string }) {
+  return (
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 flex flex-col items-center text-center group hover:border-primary/30 transition-all"
+    >
+      <div className="mb-6 relative">
+        <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform">
+          {icon}
+        </div>
+        <div className="absolute -top-2 -right-2 bg-charcoal text-white text-[10px] font-bold px-2 py-1 rounded-md">
+          {step}
+        </div>
+      </div>
+      <h4 className="font-bold text-charcoal mb-2">{title}</h4>
+      <p className="text-xs text-slate-500 leading-relaxed">{description}</p>
+    </motion.div>
+  );
+}
+
 function NavItem({ icon, label, active = false, onClick }: { icon: ReactNode, label: string, active?: boolean, onClick: () => void }) {
   return (
     <button 
