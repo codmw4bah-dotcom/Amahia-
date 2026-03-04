@@ -19,7 +19,10 @@ import {
   MessageSquare,
   Phone,
   MapPin,
-  Send
+  Send,
+  Database,
+  RefreshCw,
+  ArrowRight
 } from "lucide-react";
 
 type Page = "home" | "services" | "contact";
@@ -546,11 +549,8 @@ function ContactPage() {
           </div>
         </section>
       </div>
-    </div>
-  );
-}
 
-{/* Automation Workflow Section */}
+      {/* Automation Workflow Section */}
       <section className="max-w-7xl mx-auto px-6 py-24 border-t border-slate-100">
         <div className="text-center mb-16">
           <h2 className="text-3xl font-bold text-charcoal mb-4">Our Seamless Process</h2>
