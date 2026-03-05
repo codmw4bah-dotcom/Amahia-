@@ -5,6 +5,7 @@
 
 import { ReactNode, useState, useEffect, FormEvent } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import { createClient } from "@supabase/supabase-js";
 import { 
   Menu, 
   Leaf, 
@@ -24,6 +25,11 @@ import {
   RefreshCw,
   ArrowRight
 } from "lucide-react";
+
+const supabase = createClient(
+  import.meta.env.VITE_SUPABASE_URL,
+  import.meta.env.VITE_SUPABASE_ANON_KEY
+);
 
 type Page = "home" | "services" | "contact";
 
@@ -392,11 +398,19 @@ function ContactPage() {
   });
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-    // In a real app, you'd send this to a server
-  };
+  const handleSubmit = async (e: FormEvent) => {
+  e.preventDefault();
+
+  await supabase.from("contact_requests").insert([
+    {
+      name: formState.name,
+      email: formState.email,
+      message: formState.message
+    }
+  ]);
+
+  setSubmitted(true);
+};
 
   return (
     <div className="bg-[#fdfbf7] min-h-screen">
